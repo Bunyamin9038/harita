@@ -27,22 +27,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   final Completer<GoogleMapController> _mapcontroller = Completer();
-  static const CameraPosition _center =
-  CameraPosition(target: LatLng(41.00597999889418, 28.9982964957878), zoom: 14);
+  static const CameraPosition _center = CameraPosition(
+      target: LatLng(41.00597999889418, 28.9982964957878), zoom: 14);
 
   final List<Marker> _marker = [];
   final List<Marker> _branch = const [
     Marker(
       markerId: MarkerId("1"),
       position: LatLng(40.875147, 29.099436),
-      infoWindow: InfoWindow(title: "Position1", snippet: "testing1"),
+      infoWindow: InfoWindow(title: "Position1", snippet: "Test1"),
     ),
     Marker(
       markerId: MarkerId("2"),
       position: LatLng(40.884274, 29.062781),
-      infoWindow: InfoWindow(title: "Position2", snippet: "testing2"),
+      infoWindow: InfoWindow(title: "Position2", snippet: "Test2"),
     ),
   ];
 
@@ -52,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     _marker.addAll(_branch);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: GoogleMap(
         markers: Set<Marker>.of(_marker),
-        onMapCreated: (GoogleMapController controller){
+        onMapCreated: (GoogleMapController controller) {
           _mapcontroller.complete(controller);
         },
         initialCameraPosition: _center,
